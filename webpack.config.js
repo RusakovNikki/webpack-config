@@ -4,8 +4,13 @@ const mode = process.env.NODE_ENV;
 
 module.exports = (env) => {
   console.log(env);
+  console.log(process.env);
+  /**
+   * Добавлен cross-env, чтобы можно было достучаться до process.env как на Windows,
+   * так и на Linux
+   */
   return {
-    mode: env.NODE_ENV === "production" ? "production" : "development",
+    mode: process.env.NODE_ENV === "production" ? "production" : "development",
     entry: "./src/index.js",
     output: {
       filename: "bundle.js",
