@@ -3,8 +3,6 @@ const path = require("path");
 const mode = process.env.NODE_ENV;
 
 module.exports = (env) => {
-  console.log(env);
-  console.log(process.env);
   /**
    * Добавлен cross-env, чтобы можно было достучаться до process.env как на Windows,
    * так и на Linux
@@ -26,6 +24,14 @@ module.exports = (env) => {
             // транспиляция js
             loader: "babel-loader",
           },
+        },
+        {
+          test: /\.css$/i,
+          /**
+           * Чтобы внедрить css в js, используется css-loader, но не даёт возможность отобразить стили на странице
+           * Чтобы отобразить стили, используется style-loader, причём первым
+           */
+          use: ["style-loader", "css-loader"],
         },
       ],
     },
