@@ -26,12 +26,13 @@ module.exports = (env) => {
           },
         },
         {
-          test: /\.css$/i,
+          test: /\.(css|scss)$/i,
           /**
            * Чтобы внедрить css в js, используется css-loader, но не даёт возможность отобразить стили на странице
            * Чтобы отобразить стили, используется style-loader, причём первым
+           * Чтобы отображать scss, нужен sass-loader
            */
-          use: ["style-loader", "css-loader"],
+          use: ["style-loader", "css-loader", "sass-loader"],
         },
       ],
     },

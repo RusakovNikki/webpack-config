@@ -1,5 +1,6 @@
 import { getClasses } from "./getClasses";
 import "./style.css";
+import "./style.scss";
 
 getClasses();
 
