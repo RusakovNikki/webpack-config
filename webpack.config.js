@@ -17,4 +17,10 @@ module.exports = {
    * Это происходит  благодаря файлу main.js.map
    */
   devtool: "source-map",
+
+  devServer: {
+    static: {
+      directory: "./dist",
+    },
+  },
 };
