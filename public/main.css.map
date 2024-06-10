@@ -1,0 +1,1 @@
+{"version":3,"file":"main.css","mappings":"AAAA,KACI,yBAGJ,GACI,yB;ACJF,MACE,U","sources":["webpack://webpack-5/./src/style.css","webpack://webpack-5/./src/style.scss"],"sourcesContent":["body {\r\n    background-color: lightblue;\r\n}\r\n\r\nh1 {\r\n    background-color: aquamarine;\r\n}","div {\r\n  a {\r\n    color: red;\r\n  }\r\n}\r\n"],"names":[],"sourceRoot":""}

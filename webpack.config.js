@@ -1,4 +1,5 @@
 const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const mode = process.env.NODE_ENV;
 
@@ -9,6 +10,7 @@ module.exports = (env) => {
    */
   return {
     mode: process.env.NODE_ENV === "production" ? "production" : "development",
+    plugins: [new MiniCssExtractPlugin()],
     entry: "./src/index.js",
     output: {
       filename: "bundle.js",
@@ -25,20 +27,28 @@ module.exports = (env) => {
             loader: "babel-loader",
           },
         },
+        // {
+        //   test: /\.(css|scss)$/i,
+        //   /**
+        //    * Чтобы внедрить css в js, используется css-loader, но не даёт возможность отобразить стили на странице
+        //    * Чтобы отобразить стили, используется style-loader, причём первым
+        //    * Чтобы отображать scss, нужен sass-loader
+        //    */
+        //   use: ["style-loader", "css-loader", "sass-loader"],
+        // },
         {
           test: /\.(css|scss)$/i,
           /**
-           * Чтобы внедрить css в js, используется css-loader, но не даёт возможность отобразить стили на странице
-           * Чтобы отобразить стили, используется style-loader, причём первым
-           * Чтобы отображать scss, нужен sass-loader
+           * Используем эту библиотеку, если хотим, чтобы в сборке css был отдельным файлом.
+           * При этом все файлы (css, scss) конвертируются в один.
            */
-          use: ["style-loader", "css-loader", "sass-loader"],
+          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
         },
       ],
     },
     /**
      * Теперь при просмотре в логах кода можно посмотреть файл в обычном виде, а не в транспилированном.
-     * Это происходит  благодаря файлу main.js.map
+     * Это происходит  благодаря файлу *.map
      */
     devtool: "source-map",
 
