@@ -1,1 +1,1 @@
-export const wizard = "Gucci gang";
+export const wizard = "Gucci Gang";
