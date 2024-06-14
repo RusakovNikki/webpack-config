@@ -11,16 +11,10 @@ module.exports = (env) => {
    */
   return {
     mode: process.env.NODE_ENV === "production" ? "production" : "development",
-    plugins: [
-      new MiniCssExtractPlugin(),
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "src", "index.html"),
-      }),
-    ],
     /**
      * Откуда брать код
      */
-    entry: path.resolve(__dirname, "src", "index.js"),
+    entry: path.resolve(__dirname, "src", "index.ts"),
     /**
      * Куда записать билд. При этом если название будет статичным,
      * то браузер его может кешировать.
@@ -32,6 +26,20 @@ module.exports = (env) => {
       // перед сборкой очищает папку
       clean: true,
     },
+    plugins: [
+      /**
+       * Используем эту библиотеку, если хотим, чтобы в сборке css был отдельным файлом.
+       * При этом все файлы (css, scss) конвертируются в один.
+       */
+      new MiniCssExtractPlugin(),
+      /**
+       * Добавляем этот плагин чтобы файл index.html автоматически шёл в сборку
+       * и при этом подключал автоматом скрипт
+       */
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, "src", "index.html"),
+      }),
+    ],
 
     module: {
       rules: [
@@ -54,10 +62,6 @@ module.exports = (env) => {
         // },
         {
           test: /\.(css|scss)$/i,
-          /**
-           * Используем эту библиотеку, если хотим, чтобы в сборке css был отдельным файлом.
-           * При этом все файлы (css, scss) конвертируются в один.
-           */
           use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
         },
       ],
