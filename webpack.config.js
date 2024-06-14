@@ -11,10 +11,20 @@ module.exports = (env) => {
   return {
     mode: process.env.NODE_ENV === "production" ? "production" : "development",
     plugins: [new MiniCssExtractPlugin()],
-    entry: "./src/index.js",
+    /**
+     * Откуда брать код
+     */
+    entry: path.resolve(__dirname, "src", "index.js"),
+    /**
+     * Куда записать билд. При этом если название будет статичным,
+     * то браузер его может кешировать.
+     * Поэтому нужно использовать шаблоны
+     */
     output: {
-      filename: "bundle.js",
+      filename: "[name].[contenthash].js",
       path: path.resolve(__dirname, "dist"),
+      // перед сборкой очищает папку
+      clean: true,
     },
 
     module: {
