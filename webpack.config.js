@@ -64,7 +64,21 @@ module.exports = (env) => {
           test: /\.(css|scss)$/i,
           use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
         },
+        /**
+         * Обработка typescript
+         */
+        {
+          test: /\.tsx?$/,
+          use: "ts-loader",
+          exclude: /node_modules/,
+        },
       ],
+    },
+    /**
+     * Чтобы можно было писать import { AGE } from "./simpleFile"; без ".ts(x)"
+     */
+    resolve: {
+      extensions: [".tsx", ".ts", ".js"],
     },
     /**
      * Теперь при просмотре в логах кода можно посмотреть файл в обычном виде, а не в транспилированном.
