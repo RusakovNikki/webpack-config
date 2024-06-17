@@ -20,7 +20,7 @@ export default (env: EnvVariables) => {
     /**
      * Откуда брать код
      */
-    entry: path.resolve(__dirname, "src", "index.ts"),
+    entry: path.resolve(__dirname, "src", "index.tsx"),
     /**
      * Куда записать билд. При этом если название будет статичным,
      * то браузер его может кешировать.
@@ -72,6 +72,7 @@ export default (env: EnvVariables) => {
         },
         /**
          * Обработка typescript
+         * Так же ts-loader умеет обрабатывать (j/t)sx
          */
         {
           test: /\.tsx?$/,
