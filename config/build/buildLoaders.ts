@@ -33,4 +33,12 @@ export const buildLoaders = (options: BuildOptions): ModuleOptions["rules"] => [
     use: "ts-loader",
     exclude: /node_modules/,
   },
+  /**
+   * Используется чтобы была возможность
+   * импортировать изображения
+   */
+  {
+    test: /\.(png|svg|jpg|jpeg|gif)$/i,
+    type: "asset/resource",
+  },
 ];
