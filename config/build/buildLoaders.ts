@@ -38,7 +38,18 @@ export const buildLoaders = (options: BuildOptions): ModuleOptions["rules"] => [
    * импортировать изображения
    */
   {
-    test: /\.(png|svg|jpg|jpeg|gif)$/i,
+    test: /\.(png|jpg|jpeg|gif)$/i,
     type: "asset/resource",
+  },
+  {
+    test: /\.svg$/,
+    use: [
+      {
+        loader: "@svgr/webpack",
+        options: {
+          icon: true,
+        },
+      },
+    ],
   },
 ];
