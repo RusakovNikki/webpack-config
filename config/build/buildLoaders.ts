@@ -5,14 +5,6 @@ import { BuildOptions } from "./types";
 
 export const buildLoaders = (options: BuildOptions): ModuleOptions["rules"] => [
   // {
-  //   test: /\.js$/,
-  //   exclude: /node_modules/,
-  //   use: {
-  //     // транспиляция js
-  //     loader: "babel-loader",
-  //   },
-  // },
-  // {
   //   test: /\.(css|scss)$/i,
   //   /**
   //    * Чтобы внедрить css в js, используется css-loader, но не даёт возможность отобразить стили на странице
@@ -29,22 +21,44 @@ export const buildLoaders = (options: BuildOptions): ModuleOptions["rules"] => [
    * Обработка typescript
    * Так же ts-loader умеет обрабатывать (j/t)sx
    */
+  // {
+  //   test: /\.tsx?$/,
+  //   use: {
+  //     loader: "ts-loader",
+  //     /**
+  //      * Для HMR
+  //      * @see {@link https://www.npmjs.com/package/@pmmmwh/react-refresh-webpack-plugin}
+  //      */
+  //     options: {
+  //       getCustomTransformers: () => ({
+  //         before: [ReactRefreshTypeScript()],
+  //       }),
+  //       transpileOnly: true,
+  //     },
+  //   },
+  //   exclude: /node_modules/,
+  // },
   {
     test: /\.tsx?$/,
+    exclude: /node_modules/,
     use: {
-      loader: "ts-loader",
       /**
-       * Для HMR
-       * @see {@link https://www.npmjs.com/package/@pmmmwh/react-refresh-webpack-plugin}
+       * Транспиляция tsx, jsx в js
        */
+      loader: "babel-loader",
       options: {
-        getCustomTransformers: () => ({
-          before: [ReactRefreshTypeScript()],
-        }),
-        transpileOnly: true,
+        presets: [
+          "@babel/preset-env",
+          "@babel/preset-typescript",
+          [
+            "@babel/preset-react",
+            {
+              runtime: "automatic",
+            },
+          ],
+        ],
       },
     },
-    exclude: /node_modules/,
   },
   /**
    * Используется чтобы была возможность
