@@ -3,6 +3,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { Configuration } from "webpack";
 import { BuildOptions } from "./types";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
+import path from "path";
 
 export const buildPlugins = ({
   paths,
@@ -21,6 +22,7 @@ export const buildPlugins = ({
    */
   new HtmlWebpackPlugin({
     template: paths.html,
+    favicon: path.resolve(paths.public, "favicon.ico"),
   }),
   /**
    * Для HMR

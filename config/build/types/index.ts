@@ -3,6 +3,7 @@ export interface BuildPath {
   html: string;
   output: string;
   src: string;
+  public: string;
 }
 
 export enum EEnvMode {
