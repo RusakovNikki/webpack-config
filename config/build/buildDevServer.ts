@@ -15,4 +15,11 @@ export const buildDevServer = (
    * Если раздавать статику через nginx то нужно делать проксирование на index.html
    */
   historyApiFallback: true,
+  /**
+   * Позволяет обновлять контент без перезагрузки страницы.
+   * Но так как мы используем не чистый js, а React, то нужно подключить
+   * Библиотеки:
+   * @see {@link https://www.npmjs.com/package/@pmmmwh/react-refresh-webpack-plugin
+   */
+  hot: true,
 });

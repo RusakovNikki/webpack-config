@@ -2,6 +2,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { Configuration } from "webpack";
 import { BuildOptions } from "./types";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 
 export const buildPlugins = ({
   paths,
@@ -21,4 +22,9 @@ export const buildPlugins = ({
   new HtmlWebpackPlugin({
     template: paths.html,
   }),
+  /**
+   * Для HMR
+   * @see {@link https://www.npmjs.com/package/@pmmmwh/react-refresh-webpack-plugin}
+   */
+  new ReactRefreshWebpackPlugin(),
 ];

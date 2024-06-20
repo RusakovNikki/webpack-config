@@ -14,6 +14,7 @@
   "devDependencies": {
     "@babel/core": "^7.24.7",
     "@babel/preset-env": "^7.24.7",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^20.8.3",
     "@types/react": "^18.2.25",
@@ -25,6 +26,7 @@
     "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.9.0",
+    "react-refresh": "^0.14.2",
     "sass": "^1.77.4",
     "sass-loader": "^14.2.1",
     "style-loader": "^4.0.0",
@@ -37,6 +39,7 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-refresh-typescript": "^2.0.9"
   }
 }
